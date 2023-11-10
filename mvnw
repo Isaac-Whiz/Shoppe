@@ -160,7 +160,7 @@ find_maven_basedir() {
 # concatenates all lines of a file
 concat_lines() {
   if [ -f "$1" ]; then
-    # Remove \r in case we run on Windows within Git Bash
+    # Remove \r in case we run on windows within Git Bash
     # and check out the repository with auto CRLF management
     # enabled. Otherwise, we may read lines that are delimited with
     # \r\n and produce $'-Xarg\r' rather than -Xarg due to word
@@ -230,7 +230,7 @@ else
         log "Falling back to using Java to download"
         javaSource="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/MavenWrapperDownloader.java"
         javaClass="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/MavenWrapperDownloader.class"
-        # For Cygwin, switch paths to Windows format before running javac
+        # For Cygwin, switch paths to windows format before running javac
         if $cygwin; then
           javaSource=$(cygpath --path --windows "$javaSource")
           javaClass=$(cygpath --path --windows "$javaClass")
@@ -282,7 +282,7 @@ fi
 
 MAVEN_OPTS="$(concat_lines "$MAVEN_PROJECTBASEDIR/.mvn/jvm.config") $MAVEN_OPTS"
 
-# For Cygwin, switch paths to Windows format before running java
+# For Cygwin, switch paths to windows format before running java
 if $cygwin; then
   [ -n "$JAVA_HOME" ] &&
     JAVA_HOME=$(cygpath --path --windows "$JAVA_HOME")
@@ -293,7 +293,7 @@ if $cygwin; then
 fi
 
 # Provide a "standardized" way to retrieve the CLI args that will
-# work with both Windows and non-Windows executions.
+# work with both windows and non-windows executions.
 MAVEN_CMD_LINE_ARGS="$MAVEN_CONFIG $*"
 export MAVEN_CMD_LINE_ARGS
 

@@ -1,4 +1,5 @@
 /*C12*/SET SCHEMA PUBLIC
+create table admin (id bigint not null, department varchar(255), name varchar(255), primary key (id))
 DISCONNECT
 /*C13*/SET SCHEMA PUBLIC
 DISCONNECT
