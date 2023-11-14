@@ -89,9 +89,6 @@ public class UserController {
     }
 
     private void init() {
-        name = txtLoginName.getText().trim();
-        password =  txtLoginPass.getText().trim();
-        confirmPassword = txtLoginConfirmPass.getText().trim();
         stage = new Stage();
         passwordPanel.setVisible(false);
         btnRegister.setVisible(false);
@@ -99,6 +96,9 @@ public class UserController {
 
     private void  register() {
         btnRegister.setOnAction(actionEvent -> {
+            name = txtLoginName.getText().trim();
+            password =  txtLoginPass.getText().trim();
+            confirmPassword = txtLoginConfirmPass.getText().trim();
             registerUser(name, password, confirmPassword);
         });
     }
@@ -112,7 +112,7 @@ public class UserController {
         } else {
             userService.save(new User(name, password, LocalDateTime.now()));
             showMainStage();
-            Util.showNotification(stage, "Registration successful");
+//            Util.showNotification(stage, "Registration successful");
         }
     }
 

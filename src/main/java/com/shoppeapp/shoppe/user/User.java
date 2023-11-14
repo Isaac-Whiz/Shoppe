@@ -1,9 +1,14 @@
 package com.shoppeapp.shoppe.user;
 
+import com.shoppeapp.shoppe.purchase.Purchase;
+import com.shoppeapp.shoppe.report.Report;
+import com.shoppeapp.shoppe.sale.Sale;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "User")
 @Table(name = "\"user\"")
@@ -22,6 +27,15 @@ public class User {
     @Setter
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Purchase> purchases = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Sale> sales = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Report> reports = new ArrayList<>();
 
     @Getter
     @Setter
