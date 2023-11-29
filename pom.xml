@@ -81,6 +81,11 @@
             <artifactId>javafx-controls</artifactId>
             <version>21-ea+5</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.almasb</groupId>
+            <artifactId>fxgl-scene</artifactId>
+            <version>17.2</version>
+        </dependency>
     </dependencies>
 
     <build>

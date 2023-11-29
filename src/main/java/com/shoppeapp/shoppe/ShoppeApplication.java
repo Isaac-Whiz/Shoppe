@@ -1,5 +1,9 @@
 package com.shoppeapp.shoppe;
 
+import com.shoppeapp.shoppe.product.Product;
+import com.shoppeapp.shoppe.purchase.Purchase;
+import com.shoppeapp.shoppe.purchase.PurchaseService;
+import com.shoppeapp.shoppe.sale.SaleService;
 import com.shoppeapp.shoppe.user.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +18,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 
 @SpringBootApplication
@@ -33,7 +38,7 @@ public class ShoppeApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/authenticate.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/windows/user.fxml"));
     loader.setControllerFactory(applicationContext::getBean);
     Parent parent = loader.load();
 
@@ -45,12 +50,10 @@ public class ShoppeApplication extends Application {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(UserService service) {
+    CommandLineRunner commandLineRunner(UserService service,
+                                        SaleService saleService,
+                                        PurchaseService purchaseService) {
         return args -> {
-//            service.save(new User("John", "john", LocalDateTime.now()));
-//            service.save(new User("Joram", "joram", LocalDateTime.now()));
-//            service.save(new User("James", "james", LocalDateTime.now()));
-            System.out.println(service.count());
         };
     }
     @Override

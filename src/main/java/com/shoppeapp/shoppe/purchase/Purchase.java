@@ -1,19 +1,17 @@
 package com.shoppeapp.shoppe.purchase;
 
 import com.shoppeapp.shoppe.product.Product;
-import com.shoppeapp.shoppe.user.User;
+import com.shoppeapp.shoppe.util.Util;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity(name = "Purchase")
 @Table(name = "purchase")
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
+@ToString
 public class Purchase {
 
     @Id
@@ -22,25 +20,63 @@ public class Purchase {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "purchase_id_sequence")
     private long purchaseId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_purchase_id", foreignKey = @ForeignKey(name = "user_purchase_id_fk"))
-    private User user;
+    @Embedded
+    @Getter
+    private Product product;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "purchases")
-    private List<Product> products = new ArrayList<>();
 
+    @Column(name = "purchased_by", nullable = false, columnDefinition = "TEXT")
+    private String purchasedBy = Util.setUsername().getName();
+
+
+    @Getter
+    @Setter
     @Column(name = "product_quantity", nullable = false, columnDefinition = "NUMERIC")
     private int productQuantity;
 
+    @Getter
+    @Setter
     @Column(name = "purchase_price", nullable = false, columnDefinition = "NUMERIC")
     private double purchasePrice;
 
-    @Column(name = "purchase_time", nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private LocalDateTime purchase_time;
+    @Getter
+    @Setter
+    @Column(name = "selling_price", nullable = false, columnDefinition = "NUMERIC")
+    private double sellingPrice;
 
-    public Purchase(int productQuantity, double purchasePrice, LocalDateTime purchase_time) {
+    @Getter
+    @Setter
+    @Column(name = "projected_sales", nullable = false, columnDefinition = "NUMERIC")
+    private double projectedSales;
+
+    @Getter
+    @Setter
+    @Column(name = "projected_profits", nullable = false, columnDefinition = "NUMERIC")
+    private double projectedProfits;
+
+    @Getter
+    @Setter
+    @Column(name = "purchase_time", nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private LocalDateTime purchaseTime;
+
+
+    public Purchase(Product product,
+                    String purchasedBy,
+                    int productQuantity,
+                    double purchasePrice,
+                    double sellingPrice,
+                    double projectedSales,
+                    double projectedProfits,
+                    LocalDateTime purchaseTime) {
+        this.product = product;
+        this.purchasedBy = purchasedBy;
         this.productQuantity = productQuantity;
         this.purchasePrice = purchasePrice;
-        this.purchase_time = purchase_time;
+        this.sellingPrice = sellingPrice;
+        this.projectedSales = projectedSales;
+        this.projectedProfits = projectedProfits;
+        this.purchaseTime = purchaseTime;
     }
+
+
 }

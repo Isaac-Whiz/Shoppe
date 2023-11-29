@@ -16,11 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
+
     @Id
     @SequenceGenerator(name = "user_id_sequence", sequenceName = "user_id_sequence",
             allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_sequence")
     @Column(name = "user_id", updatable = false)
+    @Getter
     private long user_id;
 
     @Getter
@@ -28,11 +30,11 @@ public class User {
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Purchase> purchases = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Purchase> purchases = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Sale> sales = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Sale> sales = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Report> reports = new ArrayList<>();
@@ -51,5 +53,9 @@ public class User {
         this.name = name;
         this.password = password;
         this.date_registered = date_registered;
+    }
+
+    public User(String name) {
+        this.name = name;
     }
 }

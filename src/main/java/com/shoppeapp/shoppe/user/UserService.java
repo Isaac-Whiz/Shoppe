@@ -18,12 +18,20 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Optional<User> authenticateUser(String name, String password) {
-        return userRepository.findUserByNameAndPassword(name, password);
+//    public Optional<User> authenticateUser(String name, String password) {
+//        return userRepository.findUserByNameAndPassword(name, password);
+//    }
+
+    public boolean authenticateUser(String name, String password) {
+        return userRepository.existsUserByNameAndPassword(name, password);
     }
 
     public long count() {
         return userRepository.count();
+    }
+
+    public boolean isUserAlreadyExist(String name){
+        return userRepository.existsByName(name);
     }
 
 }

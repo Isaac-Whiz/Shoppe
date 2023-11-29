@@ -21,8 +21,9 @@ public class Report {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_report_id",
-            foreignKey = @ForeignKey(name = "user_report_id_fk"))
+    @JoinColumn(name = "user_report_identity",
+            referencedColumnName = "user_id",
+            foreignKey = @ForeignKey(name = "user_report_identity_fk"))
     private User user;
 
     @Getter
