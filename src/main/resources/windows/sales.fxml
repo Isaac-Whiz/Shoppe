@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="sales_panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1357.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shoppeapp.shoppe.sale.SaleController">
+<Pane fx:id="sales_panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1364.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shoppeapp.shoppe.sale.SaleController">
    <children>
        <HBox prefHeight="25.0" prefWidth="1500.0">
       <MenuBar prefHeight="25.0" prefWidth="1342.0" HBox.hgrow="ALWAYS">
@@ -28,6 +28,8 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem fx:id="purchases" mnemonicParsing="false" text="Purchases" />
+              <MenuItem fx:id="report" mnemonicParsing="false" text="Reports" />
+              <MenuItem fx:id="logout" mnemonicParsing="false" text="Log out" />
               <MenuItem fx:id="exit" mnemonicParsing="false" text="Exit" />
             </items>
           </Menu>
@@ -49,22 +51,22 @@
          <children>
             <Pane layoutX="7.0" layoutY="535.0" prefHeight="91.0" prefWidth="928.0">
                <children>
-                  <ChoiceBox fx:id="choiceChooseItem" accessibleText="Choose Item" layoutX="14.0" layoutY="32.0" prefHeight="39.0" prefWidth="190.0">
+                  <ChoiceBox fx:id="choiceChooseItem" accessibleText="Choose Item" focusTraversable="false" layoutX="14.0" layoutY="32.0" prefHeight="39.0" prefWidth="190.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ChoiceBox>
-                  <TextField fx:id="txtSellQuantity" layoutX="257.0" layoutY="33.0" prefHeight="39.0" prefWidth="149.0" promptText="Enter quantity">
+                  <TextField fx:id="txtSellQuantity" focusTraversable="false" layoutX="257.0" layoutY="33.0" prefHeight="39.0" prefWidth="149.0" promptText="Enter quantity">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="btnSell" accessibleText="Sell" layoutX="827.0" layoutY="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" text="Sell" textAlignment="CENTER">
+                  <Button fx:id="btnSell" accessibleText="Sell" focusTraversable="false" layoutX="827.0" layoutY="25.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="87.0" text="Sell" textAlignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextField fx:id="txtSellCost" editable="false" layoutX="650.0" layoutY="25.0" prefHeight="39.0" prefWidth="149.0" promptText="Cost">
+                  <TextField fx:id="txtSellCost" editable="false" focusTraversable="false" layoutX="650.0" layoutY="25.0" prefHeight="39.0" prefWidth="149.0" promptText="Cost">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -73,7 +75,7 @@
                   <Label layoutX="650.0" layoutY="3.0" prefHeight="17.0" prefWidth="138.0" text="Cost" />
                   <Label layoutX="257.0" layoutY="11.0" prefHeight="17.0" prefWidth="138.0" text="Quantity" />
                   <Label layoutX="469.0" layoutY="7.0" prefHeight="17.0" prefWidth="138.0" text="Price" />
-                  <TextField fx:id="txtSellPrice" layoutX="464.0" layoutY="29.0" prefHeight="39.0" prefWidth="149.0" promptText="Enter price">
+                  <TextField fx:id="txtSellPrice" focusTraversable="false" layoutX="464.0" layoutY="29.0" prefHeight="39.0" prefWidth="149.0" promptText="Enter price">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
@@ -82,7 +84,7 @@
             </Pane>
             <Pane prefHeight="521.0" prefWidth="928.0">
                <children>
-                  <TableView fx:id="salesTable" prefHeight="521.0" prefWidth="920.0">
+                  <TableView fx:id="salesTable" focusTraversable="false" prefHeight="521.0" prefWidth="920.0">
                     <columns>
                       <TableColumn fx:id="colItem" prefWidth="207.0" text="Item" />
                         <TableColumn fx:id="colQuantity" prefWidth="260.0" text="Quantity" />
@@ -92,7 +94,8 @@
                   </TableView>
                </children>
             </Pane>
-         </children></Pane>
+         </children>
+      </Pane>
       <Pane layoutX="931.0" layoutY="38.0" prefHeight="508.0" prefWidth="418.0">
          <children>
             <Pane layoutX="273.0" prefHeight="39.0" prefWidth="138.0">
@@ -104,129 +107,115 @@
             <Label layoutX="42.0" layoutY="6.0" prefHeight="39.0" prefWidth="183.0" text="Utility" textAlignment="CENTER" />
             <TabPane layoutX="3.0" layoutY="45.0" prefHeight="465.0" prefWidth="412.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Calulator">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <Pane fx:id="paneCalc" layoutX="-4.0" layoutY="-1.0" prefHeight="447.0" prefWidth="424.0" />
-                                   <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-                                   <GridPane layoutY="92.0" prefHeight="297.0" prefWidth="419.0">
-                                       <columnConstraints>
-                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                           <Button fx:id="five" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="two" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="2" GridPane.columnIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button mnemonicParsing="false" prefHeight="500.0" prefWidth="500.0" text="1" GridPane.rowIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="four" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="4" GridPane.rowIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="minus" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="74.0" prefWidth="95.0" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="plus" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="75.0" prefWidth="95.0" text="+" GridPane.columnIndex="3">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="three" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="3" GridPane.columnIndex="2">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="six" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="seven" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="7" GridPane.rowIndex="2">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="eight" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="nine" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="mult" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="74.0" prefWidth="96.0" text="*" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="zero" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="0" GridPane.rowIndex="3">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="equals" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="=" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="clear" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="CL" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="div" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="74.0" prefWidth="96.0" text="/" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                           <Button fx:id="one" mnemonicParsing="false" onAction="#handleCalcButtonAction" prefHeight="500.0" prefWidth="500.0" text="1">
-                                               <font>
-                                                   <Font size="30.0" />
-                                               </font>
-                                           </Button>
-                                       </children>
-                                   </GridPane>
-                                   <TextField fx:id="display" alignment="CENTER_RIGHT" editable="false" layoutX="1.0" prefHeight="91.0" prefWidth="407.0">
-                                       <font>
-                                           <Font size="41.0" />
-                                       </font>
-                                   </TextField>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </Tab>
+                  <Tab text="Calculator">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="436.0" prefWidth="399.0">
+                          <Label fx:id="lblResult" contentDisplay="RIGHT" layoutX="2.0" layoutY="2.0" minHeight="16" minWidth="69" prefHeight="97.0" prefWidth="406.0" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Bodoni MT Bold" size="40.0" />
+                           </font></Label>
+                          <GridPane layoutX="2.0" layoutY="99.0" prefHeight="334.0" prefWidth="405.0">
+                              <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              </columnConstraints>
+                              <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              </rowConstraints>
+                              <Button fx:id="btnFive" focusTraversable="false" layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnOne" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="1" GridPane.columnIndex="1">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnThree" focusTraversable="false" layoutX="10.0" layoutY="91.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="3" GridPane.columnIndex="3">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnSix" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnTwo" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="2" GridPane.columnIndex="2">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnFour" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="4" GridPane.rowIndex="1">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnNine" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="9" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnEight" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="8" GridPane.rowIndex="2">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnSeven" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="7" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnZero" focusTraversable="false" layoutX="216.0" layoutY="172.0" mnemonicParsing="false" onAction="#onNumberClicked" prefHeight="82.0" prefWidth="107.0" text="0">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnEqual" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onEqualsClicked" prefHeight="82.0" prefWidth="107.0" text="=" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnMulti" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSymbolClicked" prefHeight="82.0" prefWidth="107.0" text="X" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnDiv" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSymbolClicked" prefHeight="82.0" prefWidth="107.0" text="/" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnAdd" focusTraversable="false" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSymbolClicked" prefHeight="82.0" prefWidth="107.0" text="+" GridPane.rowIndex="3">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                              <Button fx:id="btnSub" focusTraversable="false" mnemonicParsing="false" onAction="#onSymbolClicked" prefHeight="81.0" prefWidth="101.0" text="-" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                  <font>
+                                      <Font name="Bodoni MT Bold" size="36.0" />
+                                  </font>
+                              </Button>
+                             <Button fx:id="btnCl" focusTraversable="false" mnemonicParsing="false" onAction="#onClearClicked" prefHeight="82.0" prefWidth="106.0" text="CL" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                <font>
+                                    <Font name="Bodoni MT Bold" size="36.0" />
+                                </font>
+                             </Button>
+                          </GridPane>
+                      </AnchorPane>
+                  </Tab>
                 <Tab text="Prices">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="433.0" prefWidth="417.0">
                            <children>
                               <Pane layoutX="-3.0" prefHeight="438.0" prefWidth="423.0">
                                  <children>
-                                    <TableView fx:id="pricesTable" layoutX="4.0" prefHeight="439.0" prefWidth="412.0">
+                                    <TableView fx:id="pricesTable" focusTraversable="false" layoutX="4.0" prefHeight="439.0" prefWidth="412.0">
                                       <columns>
                                         <TableColumn fx:id="colSaleItem" prefWidth="223.0" text="Item" />
                                         <TableColumn fx:id="colSellingPrice" minWidth="0.0" prefWidth="199.0" text="Selling price" />
@@ -238,6 +227,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+
               </tabs>
             </TabPane>
          </children>

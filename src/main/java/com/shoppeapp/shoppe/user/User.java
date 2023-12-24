@@ -35,9 +35,9 @@ public class User {
 
 //    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 //    private List<Sale> sales = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Report> reports = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Report> reports = new ArrayList<>();
 
     @Getter
     @Setter

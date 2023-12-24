@@ -9,11 +9,9 @@ import java.util.List;
 @Service
 public class SaleService {
     private static SaleRepository saleRepository;
-    private static PurchaseService purchaseService;
 
-    public SaleService(SaleRepository saleRepository, PurchaseService purchaseService) {
+    public SaleService(SaleRepository saleRepository) {
         SaleService.saleRepository = saleRepository;
-        SaleService.purchaseService = purchaseService;
     }
     public static List<Purchase> getProductNames() {
         return PurchaseService.getPurchases();

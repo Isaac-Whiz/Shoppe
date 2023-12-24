@@ -2,27 +2,20 @@ package com.shoppeapp.shoppe.user;
 
 import com.shoppeapp.shoppe.util.Util;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+import lombok.NoArgsConstructor;
 
-import java.awt.*;
-import java.io.IOException;
 import java.time.LocalDateTime;
 
-import static com.shoppeapp.shoppe.util.Util.showAlert;
 
 @org.springframework.stereotype.Controller
-public class UserController {
+@NoArgsConstructor(force = true)
+public class UserController extends Util {
+
     private final UserService userService;
     public Button btnLogin;
     public TextField txtLoginName;
@@ -45,8 +38,8 @@ public class UserController {
 
     @FXML
     public void initialize() {
-        loginImage.setImage(new Image("/icons/user.png"));
-        init();
+        setImages();
+        manageVisibility();
         register();
         openMainStage();
         changeVisibility();
@@ -57,7 +50,7 @@ public class UserController {
         btnLogin.setOnAction(actionEvent -> {
 //            initNameAndPassword();
 //            authenticateUser(name, password);
-            showSalesStage();
+            navigateToSales();
         });
     }
 
@@ -68,29 +61,24 @@ public class UserController {
         });
     }
 
-    private void showSalesStage() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/windows/sales.fxml"));
-        Parent parent;
-        try {
-            parent = fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.setScene(new Scene(parent));
-        stage.getIcons().add(new Image("icons/main-form-icon.png"));
-        stage.setMaximized(true);
-        stage.setTitle("Sales");
-        stage.show();
-        Window window = btnLogin.getScene().getWindow();
-        window.hide();
+    private void navigateToSales() {
+        switchScenes("/windows/sales.fxml", "Sales", btnLogin);
     }
 
-    private void init() {
-        stage = new Stage();
+    private void manageVisibility() {
         passwordPanel.setVisible(false);
         btnRegister.setVisible(false);
     }
 
+    private void setImages() {
+        loginImage.setImage(new Image("/icons/user.png"));
+        user_panel.setBackground(
+                new Background(new BackgroundImage(new Image("/icons/welcome.jpg")
+                        , BackgroundRepeat.NO_REPEAT,
+                        null,
+                        BackgroundPosition.CENTER,
+                        BackgroundSize.DEFAULT)));
+    }
     private void  register() {
         btnRegister.setOnAction(actionEvent -> {
             initNameAndPassword();
@@ -115,18 +103,18 @@ public class UserController {
                 showAlert("Error", "Enter matching passwords please.", Alert.AlertType.ERROR);
             } else {
                 userService.save(new User(name, password, LocalDateTime.now()));
-                showSalesStage();
-                Util.showPopUp("Registration successful", stage);
+                navigateToSales();
+                showPopUp("Registration successful", btnLogin);
             }
         }
     }
     private void authenticateUser(String name, String password) {
         var result = userService.authenticateUser(name, password);
         if (result) {
-            showSalesStage();
-            Util.showPopUp("Login successful", stage);
+            navigateToSales();
+            showPopUp("Login successful", btnLogin);
         } else {
-            Util.showAlert("Login", "Login failed, enter valid name and password.", Alert.AlertType.ERROR);
+            showAlert("Login", "Login failed, enter valid name and password.", Alert.AlertType.ERROR);
         }
     }
     private boolean isUserAlreadyExist() {

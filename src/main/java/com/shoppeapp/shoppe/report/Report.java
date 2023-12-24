@@ -19,59 +19,68 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "report_id_sequence")
     private long reportId;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_report_identity",
-            referencedColumnName = "user_id",
-            foreignKey = @ForeignKey(name = "user_report_identity_fk"))
-    private User user;
+    @Getter
+    @Setter
+    @Column(name = "most_selling_user", nullable = false, columnDefinition = "TEXT")
+    private String mostSellingUser;
 
     @Getter
     @Setter
-    @Column(name = "daily_sales", nullable = false, columnDefinition = "NUMERIC")
-    private long dailySales;
+    @Column(name = "least_selling_user", nullable = false, columnDefinition = "TEXT")
+    private String leastSellingUser;
 
     @Getter
     @Setter
-    @Column(name = "quantity_sold", nullable = false, columnDefinition = "NUMERIC")
-    private int quantitySold;
+    @Column(name = "least_selling_category", nullable = false, columnDefinition = "TEXT")
+    private String leastSellingCategory;
 
     @Getter
     @Setter
-    @Column(name = "most_selling", nullable = false, columnDefinition = "TEXT")
-    private String mostSelling;
+    @Column(name = "most_selling_category", nullable = false, columnDefinition = "TEXT")
+    private String mostSellingCategory;
+
 
     @Getter
     @Setter
-    @Column(name = "least_selling", nullable = false, columnDefinition = "TEXT")
-    private String leastSelling;
+    @Column(name = "most_selling_item", nullable = false, columnDefinition = "TEXT")
+    private String mostSellingItem;
+
+    @Getter
+    @Setter
+    @Column(name = "least_selling_item", nullable = false, columnDefinition = "TEXT")
+    private String leastSellingItem;
+
+    @Getter
+    @Setter
+    @Column(name = "total_purchases", nullable = false, columnDefinition = "NUMERIC")
+    private long totalPurchases;
+
+    @Getter
+    @Setter
+    @Column(name = "projected_total_profits", nullable = false, columnDefinition = "NUMERIC")
+    private int projectedTotalProfits;
+
+    @Getter
+    @Setter
+    @Column(name = "actual_total_profits", nullable = false, columnDefinition = "NUMERIC")
+    private int actualTotalProfits;
 
     @Getter
     @Setter
     @Column(name = "available_stock", nullable = false, columnDefinition = "NUMERIC")
     private int availableStock;
 
-    @Getter
-    @Setter
-    @Column(name = "projected_profit", nullable = false, columnDefinition = "NUMERIC")
-    private double projectedProfits;
 
-    @Getter
-    @Setter
-    @Column(name = "net_cash_position", nullable = false, columnDefinition = "NUMERIC")
-    private double netCashPosition;
-
-
-    public Report(long dailySales, int quantitySold,
-                  String mostSelling, String leastSelling,
-                  int availableStock, double projectedProfits,
-                  double netCashPosition) {
-        this.dailySales = dailySales;
-        this.quantitySold = quantitySold;
-        this.mostSelling = mostSelling;
-        this.leastSelling = leastSelling;
+    public Report(String mostSellingUser, String leastSellingUser, String leastSellingCategory, String mostSellingCategory, String mostSellingItem, String leastSellingItem, long totalPurchases, int projectedTotalProfits, int actualTotalProfits, int availableStock) {
+        this.mostSellingUser = mostSellingUser;
+        this.leastSellingUser = leastSellingUser;
+        this.leastSellingCategory = leastSellingCategory;
+        this.mostSellingCategory = mostSellingCategory;
+        this.mostSellingItem = mostSellingItem;
+        this.leastSellingItem = leastSellingItem;
+        this.totalPurchases = totalPurchases;
+        this.projectedTotalProfits = projectedTotalProfits;
+        this.actualTotalProfits = actualTotalProfits;
         this.availableStock = availableStock;
-        this.projectedProfits = projectedProfits;
-        this.netCashPosition = netCashPosition;
     }
 }

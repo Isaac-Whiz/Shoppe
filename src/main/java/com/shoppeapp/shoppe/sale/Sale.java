@@ -26,6 +26,8 @@ public class Sale {
     @Setter
     private Product product;
 
+    @Getter
+    @Setter
     @Column(name = "sold_by", nullable = false, columnDefinition = "TEXT")
     private String soldBy = Util.setUsername().getName();
 
@@ -46,6 +48,14 @@ public class Sale {
 
     public Sale(Product product, long quantitySold, double priceSold, LocalDateTime timeSold) {
         this.product = product;
+        this.quantitySold = quantitySold;
+        this.priceSold = priceSold;
+        this.timeSold = timeSold;
+    }
+
+    public Sale(Product product, String soldBy, long quantitySold, double priceSold, LocalDateTime timeSold) {
+        this.product = product;
+        this.soldBy = soldBy;
         this.quantitySold = quantitySold;
         this.priceSold = priceSold;
         this.timeSold = timeSold;
