@@ -24,8 +24,6 @@ After running the application, you will bw required to authenticate else registe
 In case you are willing to contribute in any form, You're most Welcome! 
 No custom guidelines on contributing to this software, however declarative programming is highly recommended. Thank you.
 
-## Licenses
-- Open Source Software
 
 ## Acknowledgements
 - Amigoscode
