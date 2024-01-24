@@ -5,6 +5,7 @@
 # Shoppe Application
 This is a Spring JavaFX inventory management application.  Implemented using the [@Spring framework](https://spring.io/) for Object Relational Mapping, and other tasks.
 <br> The application takes use of the [@PostgreSQL](https://www.postgresql.org/) as the database management system and the [@Jasper Report](https://community.jaspersoft.com/files/file/20-jasperreports%C2%AE-library-community-edition/) to generate the reports. 
+You can grab the entity relationship diagram [here](https://drive.google.com/file/d/1dALNLov0nq21e4TTf4KNN8dD86nCh38I/view?usp=sharing) (.io format)
 <br>
 
 ## Features
@@ -13,6 +14,13 @@ This is a Spring JavaFX inventory management application.  Implemented using the
 - No installation necessary - just download the [.exe](https://drive.google.com/file/d/1tHOLu6wdpNClPcF6lj6u6DvRdkNojTjH/view?usp=drive_link) file.
 - Easy to use.
 - Works Windows Operating system (win 7, 8, 10 & 11).
+- A calculator for quick calculations
+
+## Goals
+- Assissting in formulation of business documents like the balance sheets, cash flow statements, budgets and others.
+- Monitroing inventory levels.
+- Identifying the business cash position.
+- Quickly sharable summarized reports.
 
 ## Installation
 Simply install PostgreSQL desktop and after run the application.
