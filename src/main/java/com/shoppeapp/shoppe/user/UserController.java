@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -16,25 +15,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(force = true)
 public class UserController extends Util {
 
-    private final UserService userService;
     public Button btnLogin;
     public TextField txtLoginName;
     public PasswordField txtLoginPass;
-    public ImageView loginImage;
     public PasswordField txtLoginConfirmPass;
+    public ImageView loginImage;
     public Button btnRegister;
     public Pane passwordPanel;
     public Label txtRegister;
     public Pane user_panel;
-    public static Stage stage;
     private String name;
     private String password;
-    private String confirmPassword;
 
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @FXML
     public void initialize() {
@@ -45,12 +37,10 @@ public class UserController extends Util {
         changeVisibility();
     }
 
-    // TODO: 11/20/2023 Enable authentication
     private void openMainStage() {
         btnLogin.setOnAction(actionEvent -> {
-//            initNameAndPassword();
-//            authenticateUser(name, password);
-            navigateToSales();
+            initNameAndPassword();
+            authenticateUser(name, password);
         });
     }
 
@@ -79,46 +69,61 @@ public class UserController extends Util {
                         BackgroundPosition.CENTER,
                         BackgroundSize.DEFAULT)));
     }
+
+    private void initNameAndPassword() {
+        if (!areFieldsBlank()) {
+            name = txtLoginName.getText().trim().toLowerCase();
+            password = txtLoginPass.getText().trim();
+            Util.setUSERNAME(name);
+            Util.setPASSWORD(password);
+        } else {
+            showAlert("Information", "Please fill all fields.", Alert.AlertType.INFORMATION);
+        }
+    }
+
     private void  register() {
         btnRegister.setOnAction(actionEvent -> {
             initNameAndPassword();
-            registerUser(name, password, confirmPassword);
+            registerUser(name, password);
         });
     }
 
-    private void initNameAndPassword() {
-        name = txtLoginName.getText().trim().toLowerCase();
-        password =  txtLoginPass.getText().trim();
-        confirmPassword = txtLoginConfirmPass.getText().trim();
-        Util.setUSERNAME(name);
-        Util.setPASSWORD(password);
+    private boolean areFieldsBlankForReg() {
+        return (areFieldsBlank()&& txtLoginConfirmPass.getText() == null);
     }
-    private void registerUser(String name, String password, String confirmPassword) {
+
+    private boolean areFieldsBlank() {
+        return (txtLoginPass.getText() == null
+                && txtLoginName.getText() == null);
+    }
+
+    private void registerUser(String name, String password) {
         if (isUserAlreadyExist()) {
             showAlert("Information", "Username already taken, user another.", Alert.AlertType.INFORMATION);
         } else {
-            if (name == null || password == null || confirmPassword == null) {
-                showAlert("Information", "Please fill all fields.", Alert.AlertType.INFORMATION);
-            } else if (!password.equals(confirmPassword)) {
-                showAlert("Error", "Enter matching passwords please.", Alert.AlertType.ERROR);
+            if (!areFieldsBlankForReg()) {
+                String confirmPassword = txtLoginConfirmPass.getText().trim();
+                if (!password.equals(confirmPassword)) {
+                    showAlert("Error", "Enter matching passwords please.", Alert.AlertType.ERROR);
+                } else {
+                    UserService.save(new User(name, password, LocalDateTime.now()));
+                    navigateToSales();
+                }
             } else {
-                userService.save(new User(name, password, LocalDateTime.now()));
-                navigateToSales();
-                showPopUp("Registration successful", btnLogin);
+                showAlert("Registration", "Registration failed, fill fields with a valid name and a password.", Alert.AlertType.ERROR);
             }
         }
     }
     private void authenticateUser(String name, String password) {
-        var result = userService.authenticateUser(name, password);
-        if (result) {
-            navigateToSales();
-            showPopUp("Login successful", btnLogin);
-        } else {
-            showAlert("Login", "Login failed, enter valid name and password.", Alert.AlertType.ERROR);
-        }
+        var result = UserService.authenticateUser(name, password);
+        if (!areFieldsBlank() && result) {
+                navigateToSales();
+            } else {
+                showAlert("Login", "Login failed, fill fields with a valid name and a password.", Alert.AlertType.ERROR);
+            }
     }
     private boolean isUserAlreadyExist() {
-        return userService.isUserAlreadyExist(name);
+        return UserService.isUserAlreadyExist(name);
     }
 
 }

@@ -7,22 +7,19 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private static UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        UserService.userRepository = userRepository;
     }
 
 
-    public void save(User user) {
+    public static void save(User user) {
         userRepository.save(user);
     }
 
-//    public Optional<User> authenticateUser(String name, String password) {
-//        return userRepository.findUserByNameAndPassword(name, password);
-//    }
 
-    public boolean authenticateUser(String name, String password) {
+    public static boolean authenticateUser(String name, String password) {
         return userRepository.existsUserByNameAndPassword(name, password);
     }
 
@@ -30,7 +27,7 @@ public class UserService {
         return userRepository.count();
     }
 
-    public boolean isUserAlreadyExist(String name){
+    public static boolean isUserAlreadyExist(String name){
         return userRepository.existsByName(name);
     }
 
