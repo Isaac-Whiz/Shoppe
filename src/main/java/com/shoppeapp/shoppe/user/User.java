@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "\"user\"")
 @ToString
 @NoArgsConstructor
+@EqualsAndHashCode
 @AllArgsConstructor
 public class User {
 
@@ -30,15 +31,6 @@ public class User {
     @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Purchase> purchases = new ArrayList<>();
-
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Sale> sales = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Report> reports = new ArrayList<>();
-
     @Getter
     @Setter
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
@@ -49,13 +41,32 @@ public class User {
     @Column(name = "date_registered", nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private LocalDateTime date_registered;
 
+
+    @Getter
+    @Setter
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT")
+    private String email;
+
+    @Getter
+    @Setter
+    @Column(name = "phone_number", nullable = false, columnDefinition = "TEXT")
+    private String phoneNumber;
+
+    public User(String name) {
+        this.name = name;
+    }
+
     public User(String name, String password, LocalDateTime date_registered) {
         this.name = name;
         this.password = password;
         this.date_registered = date_registered;
     }
 
-    public User(String name) {
+    public User(String name, String password, LocalDateTime date_registered, String email, String phoneNumber) {
         this.name = name;
+        this.password = password;
+        this.date_registered = date_registered;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 }

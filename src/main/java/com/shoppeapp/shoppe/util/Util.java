@@ -3,7 +3,9 @@ package com.shoppeapp.shoppe.util;
 import com.shoppeapp.shoppe.user.User;
 import com.shoppeapp.shoppe.user.UserController;
 import com.shoppeapp.shoppe.user.UserRepository;
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -178,5 +180,31 @@ public abstract class Util {
     }
     public static Logger getLogger(String className) {
         return Logger.getLogger(className);
+    }
+
+    public void showToast(String message, int durationMillis, Stage primaryStage) {
+        Popup popup = new Popup();
+        Label label = new Label(message);
+        label.getStyleClass().add("toast-label");
+
+        // Set styles for the label and adjust as needed
+        label.setStyle("-fx-background-color: #333333; -fx-text-fill: white; -fx-padding: 10px;");
+
+        popup.getContent().add(label);
+
+        // Position the toast in the center of the screen
+        popup.setOnShown(e -> {
+            popup.setX((primaryStage.getWidth() - popup.getWidth()) / 2 + primaryStage.getX());
+            popup.setY((primaryStage.getHeight() - popup.getHeight()) / 2 + primaryStage.getY());
+        });
+
+        // Fade out animation
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, event -> popup.show(primaryStage)),
+                new KeyFrame(Duration.millis(durationMillis), event -> popup.hide())
+        );
+        timeline.play();
+
+        popup.show(primaryStage);
     }
 }

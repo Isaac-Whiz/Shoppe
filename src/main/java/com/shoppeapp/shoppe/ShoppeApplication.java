@@ -18,6 +18,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +37,7 @@ public class ShoppeApplication extends Application {
     private static boolean methodExecuted = false;
 
     public static void main(String[] args) {
-        executeDatabaseScript();
+//        executeDatabaseScript();
         launch(args);
     }
 
@@ -95,22 +96,22 @@ public class ShoppeApplication extends Application {
             }
         }
     }
-    @Bean
-    CommandLineRunner commandLineRunner(UserService service,
-                                        SaleService saleService,
-                                        PurchaseService purchaseService) {
-        return args -> {
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Jacob", 23, 4000, LocalDateTime.now()));
-//            SaleService.save(new Sale(new Product("Books", "Stationary"),"Jacob", 23, 4000, LocalDateTime.now()));
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(UserService service,
+//                                        SaleService saleService,
+//                                        PurchaseService purchaseService) {
+//        return args -> {
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Juma", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"James", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Jacob", 23, 4000, LocalDateTime.now()));
+////            SaleService.save(new Sale(new Product("Books", "Stationary"),"Jacob", 23, 4000, LocalDateTime.now()));
+//        };
+//    }
     @Override
     public void stop() {
         applicationContext.close();
