@@ -1,5 +1,5 @@
-<p align="center">
-  <img src="https://media.gettyimages.com/id/78766311/photo/a-shopping-trolley.jpg?s=612x612&w=0&k=20&c=BahloehSBJr84swwNetkoJDz6zIPfDSKVs2GjyEKwUg=" alt="Shoppe Application" style="border-radius:50px">
+<p align="center">  
+  <img src="https://github.com/Isaac-Whiz/Shoppe/assets/95527627/30ad205a-7255-46fa-95ea-33d024b4eed5" alt="Shoppe Application" style="border-radius:50px">
 </p>
 
 # Shoppe Application
@@ -7,6 +7,9 @@ This is a Spring JavaFX inventory management application.  Implemented using the
 <br> The application takes use of the [@PostgreSQL](https://www.postgresql.org/) as the database management system and the [@Jasper Report](https://community.jaspersoft.com/files/file/20-jasperreports%C2%AE-library-community-edition/) to generate the reports. 
 You can grab the entity relationship diagram [here](https://drive.google.com/file/d/1dALNLov0nq21e4TTf4KNN8dD86nCh38I/view?usp=sharing) (.io format)
 <br>
+
+
+
 
 ## Features
 - Uses Postgres for data storage.
