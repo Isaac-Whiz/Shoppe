@@ -48,6 +48,7 @@ public class ReportsController extends Util {
     public Label lblCateNo;
     public Label lblUserNo;
     public Label lblItemTypes;
+    public MenuItem about;
 
 
     @FXML
@@ -71,6 +72,7 @@ public class ReportsController extends Util {
         purchases.setOnAction(actionEvent -> navigateToPurchases());
         logout.setOnAction(actionEvent -> logout());
         exit.setOnAction(actionEvent -> exit());
+        about.setOnAction(actionEvent -> openGitRepo());
     }
 
     private void exit() {

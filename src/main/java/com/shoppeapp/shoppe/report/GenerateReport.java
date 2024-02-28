@@ -14,9 +14,8 @@ public class GenerateReport {
 
     public static void generateReport() throws FileNotFoundException, JRException {
 
-        String filePath = "C:\\Users\\KALTECH\\Documents\\Shoppe\\src\\main" +
-                "\\resources\\report_templates\\report.jrxml";
-        JasperReport report = JasperCompileManager.compileReport(filePath);
+        var path = "src\\main\\resources\\report_templates\\report.jrxml";
+        JasperReport report = JasperCompileManager.compileReport(path);
 
         Map<String, Object> parameters = getParameters();
 

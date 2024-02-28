@@ -1,5 +1,6 @@
 package com.shoppeapp.shoppe.user;
 
+import com.shoppeapp.shoppe.ShoppeApplication;
 import com.shoppeapp.shoppe.mail.MailService;
 import com.shoppeapp.shoppe.util.Util;
 import javafx.fxml.FXML;
@@ -26,33 +27,40 @@ public class UserController extends Util {
     public TextField txtLoginName;
     public ImageView loginImage;
     public ChoiceBox comboAction;
-    public Pane user_panel;
-    public Pane register_component_panel;
-    public Pane login_component_panel;
-    public Pane reset_component_panel;
+    public Pane user_pane;
+    public Pane register_component_pane;
+    public Pane login_component_pane;
+    public Pane reset_component_pane;
     public PasswordField txtLoginPassword;
     public Button btnLogin;
     public TextField txtRegisterName;
     public PasswordField txtRegisterPass;
     public Button btnRegister;
     public PasswordField txtRegisterConfirmPass;
-    public PasswordField txtRegisterEmail;
-    public PasswordField txtRegPhoneNo;
+    public TextField txtRegisterEmail;
+    public TextField txtRegPhoneNo;
     public Pane first_reset_component_pane;
     public TextField txtFirstResetName;
-    public PasswordField txtFirstResetEmail;
+    public TextField txtFirstResetEmail;
     public Button btnFirstReset;
     public PasswordField txtConfirmReset;
     public Button btnReset;
     public PasswordField txtPasswordReset;
+    public Pane code_pane;
+    public TextField txtCode;
+    public Button btnCode;
     private MailService mailService;
+    private boolean enabledNetwork;
+    private int resetCode;
+    private String name;
 
     @FXML
     public void initialize() {
+        this.name = String.valueOf(Integer.MAX_VALUE);
+        enabledNetwork = false;
         setPanelVisibility();
         setImages();
         populateCombo();
-//        register();
         openMainStage();
         mailService = new MailService();
         displayOptions();
@@ -67,13 +75,13 @@ public class UserController extends Util {
             var choice = comboAction.getValue().toString();
             switch (choice) {
                 case "Login":
-                    managePanelDisplay(login_component_panel, register_component_panel, reset_component_panel, first_reset_component_pane);
+                    showLoginPane();
                     break;
                 case "Register":
-                    managePanelDisplay(register_component_panel, login_component_panel, reset_component_panel, first_reset_component_pane);
+                    managePanelDisplay(register_component_pane, login_component_pane, reset_component_pane, first_reset_component_pane, code_pane);
                     break;
                 case "Reset password":
-                    managePanelDisplay(first_reset_component_pane, register_component_panel, login_component_panel,  reset_component_panel);
+                    managePanelDisplay(first_reset_component_pane, register_component_pane, login_component_pane, reset_component_pane, code_pane);
                     break;
             }
         });
@@ -92,9 +100,43 @@ public class UserController extends Util {
             checkUserAvailabilityAndSendCode();
         });
 
-        btnReset.setOnAction(actionEvent -> {
-            // TODO: 2/22/2024 To be implemented later
+        btnCode.setOnAction(actionEvent -> {
+            sendResetCode();
         });
+
+        btnReset.setOnAction(actionEvent -> {
+            resetPassword();
+        });
+    }
+
+    private void resetPassword() {
+        if (!areResetFieldsBlank()) {
+            if (txtPasswordReset.getText().trim()
+                    .matches(txtConfirmReset.getText().trim())) {
+                var name = this.name;
+                var newPassword = txtConfirmReset.getText().trim();
+                UserService.changeUserPassword(name, newPassword);
+                showToast("Password reset successful", 10000, ShoppeApplication.exportedStage);
+                showLoginPane();
+            } else {
+                nonMatchingInput();
+            }
+
+        } else {
+            fillBothFieldsError();
+        }
+    }
+    private void sendResetCode() {
+        if (!isCodeFieldBlank()) {
+            var userCode = txtCode.getText().trim();
+            if (userCode.matches(String.valueOf(resetCode))) {
+                managePanelDisplay(reset_component_pane, code_pane, first_reset_component_pane, register_component_pane, login_component_pane);
+            } else {
+                showAlert("Reset code", "Enter a code matching that sent in the email please.", Alert.AlertType.INFORMATION);
+            }
+        } else {
+            showAlert("Reset code", "Fill the reset code field please.", Alert.AlertType.INFORMATION);
+        }
     }
 
     private void navigateToSales() {
@@ -103,7 +145,7 @@ public class UserController extends Util {
 
     private void setImages() {
         loginImage.setImage(new Image("/icons/user.png"));
-        user_panel.setBackground(
+        user_pane.setBackground(
                 new Background(new BackgroundImage(new Image("/icons/welcome.jpg")
                         , BackgroundRepeat.NO_REPEAT,
                         null,
@@ -117,8 +159,8 @@ public class UserController extends Util {
         } else {
             var name = txtLoginName.getText().trim();
             var password = txtLoginPassword.getText().trim();
-            Util.setUSERNAME(name);
-            Util.setPASSWORD(password);
+            setUSERNAME(name);
+            setPASSWORD(password);
             authenticateUser(name, password);
         }
     }
@@ -143,15 +185,21 @@ public class UserController extends Util {
     private boolean areFirstRegFieldsBlank() {
         return (txtFirstResetEmail.getText().isBlank() || txtFirstResetName.getText().isBlank());
     }
+    private boolean isCodeFieldBlank() {
+        return txtCode.getText().isBlank();
+    }
 
     private void checkUserAvailabilityAndSendCode() {
         if (!areFirstRegFieldsBlank()) {
             var name = txtFirstResetName.getText().trim();
+            this.name = name;
             var email = txtFirstResetEmail.getText().trim();
             if (UserService.isUserAlreadyExist(name)) {
                 if (isValidEmail(email)) {
                     sendResetCode(email);
-                    managePanelDisplay(reset_component_panel, register_component_panel, first_reset_component_pane, register_component_panel);
+                    if (enabledNetwork) {
+                        managePanelDisplay(code_pane, register_component_pane, first_reset_component_pane, register_component_pane, reset_component_pane);
+                    }
                 } else {
                     invalidEmailError();
                 }
@@ -159,8 +207,16 @@ public class UserController extends Util {
                 showAlert("Information", "User does not exist", Alert.AlertType.INFORMATION);
             }
         } else {
-            showAlert("Information", "Fill both fields.", Alert.AlertType.INFORMATION);
+            fillBothFieldsError();
         }
+    }
+
+    private void fillBothFieldsError() {
+        showAlert("Information", "Fill both fields.", Alert.AlertType.INFORMATION);
+    }
+
+    private void showLoginPane() {
+        managePanelDisplay(login_component_pane, register_component_pane, reset_component_pane, first_reset_component_pane, code_pane);
     }
 
     @SneakyThrows
@@ -169,12 +225,14 @@ public class UserController extends Util {
         var min = 100000;
         var max = 999999;
         var randomCode = random.nextInt(max - min + 1) + min;
+        resetCode = randomCode;
         var subject = "Shoppe application password reset";
-        var body = "This is your Shoppe application reset code: " + String.format("%06d", randomCode);
+        var body = "This is your Shoppe application user reset code: " + String.format("%06d", randomCode);
         var googleHost = "www.google.com";
         try {
             String inet4Address = Inet4Address.getByName(googleHost).getHostAddress();
             mailService.sendMail(email, subject, body);
+            enabledNetwork = true;
             showAlert("Password Reset", "Check " + email + " for the reset code.", Alert.AlertType.INFORMATION);
             System.out.println(inet4Address);
         } catch (UnknownHostException exception) {
@@ -185,6 +243,11 @@ public class UserController extends Util {
 
     private void invalidEmailError() {
         showAlert("Error", "Please enter a valid mail address.", Alert.AlertType.ERROR);
+    }
+
+    private void nonMatchingInput() {
+        showAlert("Error", "Enter matching passwords please.", Alert.AlertType.ERROR);
+
     }
 
     private boolean isValidEmail(String email) {
@@ -207,9 +270,11 @@ public class UserController extends Util {
                 if (isValidEmail(email)) {
                     if (password.contentEquals(confirmPassword)) {
                         UserService.save(new User(name, password, LocalDateTime.now(), email, phoneNo));
+                        setUSERNAME(name);
                         navigateToSales();
+                        showToast("Registration successful", 10000, ShoppeApplication.exportedStage);
                     } else {
-                        showAlert("Error", "Enter matching passwords please.", Alert.AlertType.ERROR);
+                        nonMatchingInput();
                     }
                 } else {
                     invalidEmailError();
@@ -234,16 +299,18 @@ public class UserController extends Util {
     }
 
     private void setPanelVisibility() {
-        login_component_panel.setVisible(false);
-        register_component_panel.setVisible(false);
-        reset_component_panel.setVisible(false);
+        login_component_pane.setVisible(false);
+        register_component_pane.setVisible(false);
+        reset_component_pane.setVisible(false);
         first_reset_component_pane.setVisible(false);
+        code_pane.setVisible(false);
     }
 
-    private void managePanelDisplay(Pane main, Pane node1, Pane node2, Pane node3) {
+    private void managePanelDisplay(Pane main, Pane node1, Pane node2, Pane node3, Pane node4) {
         main.setVisible(true);
         node1.setVisible(false);
         node2.setVisible(false);
         node3.setVisible(false);
+        node4.setVisible(false);
     }
 }

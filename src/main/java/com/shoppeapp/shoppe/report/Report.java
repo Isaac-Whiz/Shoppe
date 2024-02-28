@@ -1,6 +1,5 @@
 package com.shoppeapp.shoppe.report;
 
-import com.shoppeapp.shoppe.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

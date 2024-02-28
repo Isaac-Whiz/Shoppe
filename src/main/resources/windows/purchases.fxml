@@ -21,11 +21,11 @@
                 <MenuItem fx:id="exit" mnemonicParsing="false" text="Exit" />
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
-                <MenuItem mnemonicParsing="false" text="Add Items" />
-                <MenuItem mnemonicParsing="false" text="Delete" />
+                <MenuItem fx:id="add_items" mnemonicParsing="false" text="Add Items" />
+                <MenuItem fx:id="delete" mnemonicParsing="false" text="Delete" />
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About" />
+                <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
             </Menu>
         </MenuBar>
     </HBox>

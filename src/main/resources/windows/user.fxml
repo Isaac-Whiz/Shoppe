@@ -11,17 +11,77 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="user_panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1357.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shoppeapp.shoppe.user.UserController">
-    <Pane layoutX="538.0" layoutY="46.0" prefHeight="564.0" prefWidth="638.0">
-        <ImageView fx:id="loginImage" fitHeight="150.0" fitWidth="200.0" layoutX="64.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-         <ChoiceBox fx:id="comboAction" accessibleHelp="Choose action" accessibleText="Login" layoutX="64.0" layoutY="197.0" prefWidth="150.0" />
-      <Label layoutX="64.0" layoutY="176.0" text="Select Action">
+<Pane fx:id="user_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="1357.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shoppeapp.shoppe.user.UserController">
+    <Pane layoutX="538.0" layoutY="46.0" prefHeight="596.0" prefWidth="300.0">
+        <ImageView fx:id="loginImage" fitHeight="150.0" fitWidth="200.0" layoutX="58.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+         <ChoiceBox fx:id="comboAction" accessibleHelp="Choose action" accessibleText="Login" layoutX="58.0" layoutY="199.0" prefWidth="150.0" />
+      <Label layoutX="58.0" layoutY="178.0" text="Select Action">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </Label>
-        <Pane layoutX="45.0" layoutY="231.0" prefHeight="308.0" prefWidth="210.0">
-            <Pane fx:id="login_component_panel" prefHeight="185.0" prefWidth="200.0">
+        <Pane layoutX="45.0" layoutY="231.0" prefHeight="313.0" prefWidth="210.0">
+           <Pane fx:id="reset_component_pane" prefHeight="174.0" prefWidth="200.0">
+               <PasswordField fx:id="txtPasswordReset" layoutX="14.0" layoutY="31.0" />
+               <Label layoutX="17.0" layoutY="14.0" text="Password" />
+               <Button fx:id="btnReset" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Reset password">
+                   <font>
+                       <Font name="System Bold" size="15.0" />
+                   </font>
+                   <cursor>
+                       <Cursor fx:constant="HAND" />
+                   </cursor>
+               </Button>
+               <PasswordField fx:id="txtConfirmReset" layoutX="14.0" layoutY="84.0" />
+               <Label layoutX="14.0" layoutY="67.0" text="Confirm Password" />
+           </Pane>
+           <Pane fx:id="code_pane" prefHeight="140.0" prefWidth="200.0">
+               <TextField fx:id="txtCode" layoutX="15.0" layoutY="31.0" />
+               <Label layoutX="15.0" layoutY="14.0" prefHeight="17.0" prefWidth="83.0" text="Enter the code" />
+               <Button fx:id="btnCode" layoutX="15.0" layoutY="70.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Submit">
+                   <font>
+                       <Font name="System Bold" size="15.0" />
+                   </font>
+                   <cursor>
+                       <Cursor fx:constant="HAND" />
+                   </cursor>
+               </Button>
+           </Pane>
+           <Pane fx:id="first_reset_component_pane" prefHeight="185.0" prefWidth="200.0">
+               <TextField fx:id="txtFirstResetName" layoutX="15.0" layoutY="31.0" />
+               <Label layoutX="15.0" layoutY="14.0" text="Name" />
+               <Label layoutX="18.0" layoutY="67.0" text="Email" />
+               <Button fx:id="btnFirstReset" layoutX="15.0" layoutY="125.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Submit">
+                   <font>
+                       <Font name="System Bold" size="15.0" />
+                   </font>
+                   <cursor>
+                       <Cursor fx:constant="HAND" />
+                   </cursor>
+               </Button>
+            <TextField fx:id="txtFirstResetEmail" layoutX="15.0" layoutY="84.0" />
+           </Pane>
+           <Pane fx:id="register_component_pane" prefHeight="346.0" prefWidth="200.0">
+               <TextField fx:id="txtRegisterName" layoutX="15.0" layoutY="31.0" />
+               <Label layoutX="15.0" layoutY="14.0" text="Name" />
+               <PasswordField fx:id="txtRegisterPass" layoutX="15.0" layoutY="190.0" />
+               <Label layoutX="18.0" layoutY="173.0" text="Password" />
+               <Button fx:id="btnRegister" layoutX="15.0" layoutY="283.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Register">
+                   <font>
+                       <Font name="System Bold" size="15.0" />
+                   </font>
+                   <cursor>
+                       <Cursor fx:constant="HAND" />
+                   </cursor>
+            </Button>
+               <PasswordField fx:id="txtRegisterConfirmPass" layoutX="15.0" layoutY="243.0" />
+               <Label layoutX="15.0" layoutY="226.0" text="Confirm Password" />
+            <Label layoutX="15.0" layoutY="64.0" text="Email" />
+            <Label layoutX="15.0" layoutY="123.0" text="Phone number" />
+            <TextField fx:id="txtRegisterEmail" layoutX="15.0" layoutY="89.0" />
+            <TextField fx:id="txtRegPhoneNo" layoutX="15.0" layoutY="140.0" />
+           </Pane>
+            <Pane fx:id="login_component_pane" prefHeight="185.0" prefWidth="200.0">
                 <TextField fx:id="txtLoginName" layoutX="15.0" layoutY="31.0" />
                 <Label layoutX="15.0" layoutY="14.0" text="Name" />
                 <PasswordField fx:id="txtLoginPassword" layoutX="15.0" layoutY="84.0" />
@@ -35,54 +95,6 @@
                    </cursor>
                 </Button>
             </Pane>
-        </Pane>
-        <Pane fx:id="reset_component_panel" layoutX="374.0" layoutY="43.0" prefHeight="174.0" prefWidth="200.0">
-            <PasswordField fx:id="txtPasswordReset" layoutX="14.0" layoutY="31.0" />
-            <Label layoutX="17.0" layoutY="14.0" text="Password" />
-            <Button fx:id="btnReset" layoutX="14.0" layoutY="123.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Reset password">
-                <font>
-                    <Font name="System Bold" size="15.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
-            <PasswordField fx:id="txtConfirmReset" layoutX="14.0" layoutY="84.0" />
-            <Label layoutX="14.0" layoutY="67.0" text="Confirm Password" />
-        </Pane>
-        <Pane fx:id="register_component_panel" layoutX="196.0" layoutY="222.0" prefHeight="346.0" prefWidth="200.0">
-            <TextField fx:id="txtRegisterName" layoutX="15.0" layoutY="31.0" />
-            <Label layoutX="15.0" layoutY="14.0" text="Name" />
-            <PasswordField fx:id="txtRegisterPass" layoutX="15.0" layoutY="190.0" />
-            <Label layoutX="18.0" layoutY="173.0" text="Password" />
-            <Button fx:id="btnRegister" layoutX="15.0" layoutY="283.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Register">
-                <font>
-                    <Font name="System Bold" size="15.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-         </Button>
-            <PasswordField fx:id="txtRegisterConfirmPass" layoutX="15.0" layoutY="243.0" />
-            <Label layoutX="15.0" layoutY="226.0" text="Confirm Password" />
-         <PasswordField fx:id="txtRegisterEmail" layoutX="15.0" layoutY="81.0" />
-         <Label layoutX="15.0" layoutY="64.0" text="Email" />
-         <PasswordField fx:id="txtRegPhoneNo" layoutX="15.0" layoutY="140.0" />
-         <Label layoutX="15.0" layoutY="123.0" text="Phone number" />
-        </Pane>
-        <Pane fx:id="first_reset_component_pane" layoutX="386.0" layoutY="301.0" prefHeight="185.0" prefWidth="200.0">
-            <TextField fx:id="txtFirstResetName" layoutX="15.0" layoutY="31.0" />
-            <Label layoutX="15.0" layoutY="14.0" text="Name" />
-            <PasswordField fx:id="txtFirstResetEmail" layoutX="15.0" layoutY="84.0" />
-            <Label layoutX="18.0" layoutY="67.0" text="Email" />
-            <Button fx:id="btnFirstReset" layoutX="15.0" layoutY="125.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Submit">
-                <font>
-                    <Font name="System Bold" size="15.0" />
-                </font>
-                <cursor>
-                    <Cursor fx:constant="HAND" />
-                </cursor>
-            </Button>
         </Pane>
     </Pane>
    <effect>

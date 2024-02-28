@@ -14,6 +14,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -27,12 +31,16 @@ import javafx.util.Duration;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.SneakyThrows;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @NoArgsConstructor
@@ -187,24 +195,44 @@ public abstract class Util {
         Label label = new Label(message);
         label.getStyleClass().add("toast-label");
 
-        // Set styles for the label and adjust as needed
-        label.setStyle("-fx-background-color: #333333; -fx-text-fill: white; -fx-padding: 10px;");
+        label.setStyle(
+                "-fx-background-color: #989494; " +
+                        "-fx-text-fill: black; " +
+                        "-fx-padding: 10px; " +
+                        "-fx-border-radius: 10px; " +
+                        "-fx-background-radius: 10px;" +
+                        "-fx-border-color: #000000; " +
+                        "-fx-border-width: 2px;"
+        );
+        StackPane stackPane = new StackPane(label);
+        popup.getContent().add(stackPane);
 
-        popup.getContent().add(label);
-
-        // Position the toast in the center of the screen
         popup.setOnShown(e -> {
-            popup.setX((primaryStage.getWidth() - popup.getWidth()) / 2 + primaryStage.getX());
-            popup.setY((primaryStage.getHeight() - popup.getHeight()) / 2 + primaryStage.getY());
+            popup.setX(primaryStage.getX() + primaryStage.getWidth() - stackPane.getWidth() - 20);
+            popup.setY(primaryStage.getY() + primaryStage.getHeight() - stackPane.getHeight() - 20);
         });
 
-        // Fade out animation
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, event -> popup.show(primaryStage)),
                 new KeyFrame(Duration.millis(durationMillis), event -> popup.hide())
         );
         timeline.play();
+    }
 
-        popup.show(primaryStage);
+    @SneakyThrows
+    public void openGitRepo() {
+        var os = System.getProperty("os.name").toLowerCase();
+        var url = "https://github.com/Isaac-Whiz/Shoppe";
+        if (os.contains("win")) {
+            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
+        } else if (os.contains("nix") || os.contains("nux") || os.contains("mac")) {
+            Runtime.getRuntime().exec("xdg-open " + url);
+        } else {
+            Logger.getLogger("OS").log(Level.SEVERE, "Unsupported OS");
+        }
+    }
+
+    public void disableMenuItem(MenuItem menuItem) {
+        menuItem.isDisable();
     }
 }

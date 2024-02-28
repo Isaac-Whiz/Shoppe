@@ -27,7 +27,7 @@
             <Menu mnemonicParsing="false" text="Edit">
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About" />
+                <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
             </Menu>
         </MenuBar>
     </HBox>
@@ -46,108 +46,117 @@
             </BarChart>
         </Pane>
         <Pane prefHeight="371.0" prefWidth="1012.0">
-         <children>
-            <ListView fx:id="listItemRanking" layoutY="41.0" prefHeight="330.0" prefWidth="211.0" />
+            <ListView fx:id="listItemRanking" layoutY="41.0" prefHeight="330.0" prefWidth="211.0"/>
             <Label layoutX="6.0" prefHeight="42.0" prefWidth="81.0" text="Item rankings">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
             </Label>
             <Label layoutX="93.0" prefHeight="42.0" prefWidth="118.0" text="(most selling to least)">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
+                <font>
+                    <Font name="System Italic" size="12.0"/>
+                </font>
             </Label>
-               <PieChart fx:id="pieChart" layoutX="516.0" prefHeight="365.0" prefWidth="496.0" title="User efficacy view" />
-              <Pane layoutX="211.0" layoutY="3.0" prefHeight="365.0" prefWidth="305.0">
-                  <Label layoutX="25.0" prefHeight="42.0" prefWidth="282.0" text="Miscellaneous Information" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold" size="12.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="173.0" prefHeight="32.0" prefWidth="154.0" text="Most selling user :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="269.0" prefHeight="32.0" prefWidth="154.0" text="Projected total profits :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="237.0" prefHeight="32.0" prefWidth="154.0" text="Total purchases : " textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="141.0" prefHeight="32.0" prefWidth="154.0" text="Least selling item :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="12.0" layoutY="77.0" prefHeight="32.0" prefWidth="141.0" text="Least selling category :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="12.0" layoutY="45.0" prefHeight="32.0" prefWidth="154.0" text="Most selling category :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="109.0" prefHeight="32.0" prefWidth="154.0" text="Most selling item :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="205.0" prefHeight="32.0" prefWidth="154.0" text="Least selling user : " textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="301.0" prefHeight="32.0" prefWidth="154.0" text="Actual total profits :" textAlignment="CENTER">
-                      <font>
-                          <Font name="System Bold Italic" size="13.0" />
-                      </font>
-                  </Label>
-                  <Label fx:id="lblMostCate" layoutX="166.0" layoutY="45.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblMostUser" layoutX="166.0" layoutY="173.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblLeastUser" layoutX="168.0" layoutY="205.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblTotalPurchases" layoutX="168.0" layoutY="237.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblProjectedProfits" layoutX="168.0" layoutY="269.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblActualProfits" layoutX="168.0" layoutY="301.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblLeastItem" layoutX="166.0" layoutY="141.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblMostItem" layoutX="166.0" layoutY="109.0" prefHeight="32.0" prefWidth="118.0" />
-                  <Label fx:id="lblLeastCate" layoutX="166.0" layoutY="77.0" prefHeight="32.0" prefWidth="118.0" />
-              </Pane>
-         </children>
+            <PieChart fx:id="pieChart" layoutX="516.0" prefHeight="365.0" prefWidth="496.0" title="User efficacy view"/>
+            <Pane layoutX="211.0" layoutY="3.0" prefHeight="365.0" prefWidth="305.0">
+                <Label layoutX="25.0" prefHeight="42.0" prefWidth="282.0" text="Miscellaneous Information"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="173.0" prefHeight="32.0" prefWidth="154.0" text="Most selling user :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="269.0" prefHeight="32.0" prefWidth="154.0"
+                       text="Projected total profits :" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="237.0" prefHeight="32.0" prefWidth="154.0" text="Total purchases : "
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="141.0" prefHeight="32.0" prefWidth="154.0" text="Least selling item :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="12.0" layoutY="77.0" prefHeight="32.0" prefWidth="141.0" text="Least selling category :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="12.0" layoutY="45.0" prefHeight="32.0" prefWidth="154.0" text="Most selling category :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="109.0" prefHeight="32.0" prefWidth="154.0" text="Most selling item :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="205.0" prefHeight="32.0" prefWidth="154.0" text="Least selling user : "
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label layoutX="14.0" layoutY="301.0" prefHeight="32.0" prefWidth="154.0" text="Actual total profits :"
+                       textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold Italic" size="13.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="lblMostCate" layoutX="166.0" layoutY="45.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblMostUser" layoutX="166.0" layoutY="173.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblLeastUser" layoutX="168.0" layoutY="205.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblTotalPurchases" layoutX="168.0" layoutY="237.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblProjectedProfits" layoutX="168.0" layoutY="269.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblActualProfits" layoutX="168.0" layoutY="301.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblLeastItem" layoutX="166.0" layoutY="141.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblMostItem" layoutX="166.0" layoutY="109.0" prefHeight="32.0" prefWidth="118.0"/>
+                <Label fx:id="lblLeastCate" layoutX="166.0" layoutY="77.0" prefHeight="32.0" prefWidth="118.0"/>
+            </Pane>
         </Pane>
-      <Pane layoutX="1013.0" layoutY="6.0" prefHeight="498.0" prefWidth="305.0">
-         <children>
+        <Pane layoutX="1013.0" layoutY="6.0" prefHeight="498.0" prefWidth="305.0">
             <Label layoutX="25.0" prefHeight="42.0" prefWidth="282.0" text="Other Information" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
+                <font>
+                    <Font name="System Bold" size="20.0"/>
+                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="98.0" prefHeight="42.0" prefWidth="141.0" text="No of item types : " textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="13.0" />
-               </font>
+            <Label layoutX="12.0" layoutY="98.0" prefHeight="42.0" prefWidth="141.0" text="No of item types : "
+                   textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold Italic" size="13.0"/>
+                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="56.0" prefHeight="42.0" prefWidth="154.0" text="No of categories :" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="13.0" />
-               </font>
+            <Label layoutX="12.0" layoutY="56.0" prefHeight="42.0" prefWidth="154.0" text="No of categories :"
+                   textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold Italic" size="13.0"/>
+                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="140.0" prefHeight="42.0" prefWidth="154.0" text="No of users :" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold Italic" size="13.0" />
-               </font>
+            <Label layoutX="12.0" layoutY="140.0" prefHeight="42.0" prefWidth="154.0" text="No of users :"
+                   textAlignment="CENTER">
+                <font>
+                    <Font name="System Bold Italic" size="13.0"/>
+                </font>
             </Label>
-            <Label fx:id="lblCateNo" layoutX="166.0" layoutY="61.0" prefHeight="32.0" prefWidth="118.0" />
-            <Label fx:id="lblUserNo" layoutX="166.0" layoutY="145.0" prefHeight="32.0" prefWidth="118.0" />
-            <Label fx:id="lblItemTypes" layoutX="166.0" layoutY="103.0" prefHeight="32.0" prefWidth="118.0" />
-         </children>
-      </Pane>
+            <Label fx:id="lblCateNo" layoutX="166.0" layoutY="61.0" prefHeight="32.0" prefWidth="118.0"/>
+            <Label fx:id="lblUserNo" layoutX="166.0" layoutY="145.0" prefHeight="32.0" prefWidth="118.0"/>
+            <Label fx:id="lblItemTypes" layoutX="166.0" layoutY="103.0" prefHeight="32.0" prefWidth="118.0"/>
+        </Pane>
     </Pane>
 </AnchorPane>

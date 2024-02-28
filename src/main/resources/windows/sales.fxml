@@ -35,13 +35,13 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem mnemonicParsing="false" text="Add Items" />
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="add_items" mnemonicParsing="false" text="Add Items" />
+              <MenuItem fx:id="delete" mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="about" mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
@@ -82,25 +82,26 @@
                   </TextField>
                </children>
             </Pane>
-            <Pane prefHeight="521.0" prefWidth="928.0">
-               <children>
-                  <TableView fx:id="salesTable" focusTraversable="false" prefHeight="521.0" prefWidth="920.0">
-                    <columns>
-                      <TableColumn fx:id="colItem" prefWidth="207.0" text="Item" />
-                        <TableColumn fx:id="colQuantity" prefWidth="260.0" text="Quantity" />
-                        <TableColumn fx:id="colCategory" prefWidth="240.0" text="Category" />
-                        <TableColumn fx:id="colCost" prefWidth="212.0" text="Cost" />
-                    </columns>
-                  </TableView>
-               </children>
-            </Pane>
+             <Pane prefHeight="521.0" prefWidth="928.0">
+                 <TableView fx:id="salesTable" focusTraversable="false" prefHeight="521.0" prefWidth="920.0">
+                     <columns>
+                         <TableColumn fx:id="colItem" prefWidth="207.0" text="Item" />
+                         <TableColumn fx:id="colQuantity" prefWidth="260.0" text="Quantity" />
+                         <TableColumn fx:id="colCategory" prefWidth="240.0" text="Category" />
+                         <TableColumn fx:id="colCost" prefWidth="212.0" text="Cost" />
+                     </columns>
+                 </TableView>
+             </Pane>
          </children>
       </Pane>
       <Pane layoutX="931.0" layoutY="38.0" prefHeight="508.0" prefWidth="418.0">
          <children>
             <Pane layoutX="273.0" prefHeight="39.0" prefWidth="138.0">
                <children>
-                  <Label fx:id="txtCurrentUser" layoutX="-2.0" prefHeight="39.0" prefWidth="138.0" text="User" />
+                  <Label fx:id="txtCurrentUser" layoutX="-2.0" prefHeight="39.0" prefWidth="138.0" text="User">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font></Label>
                </children>
             </Pane>
             <Pane layoutX="111.0" layoutY="45.0" prefHeight="39.0" prefWidth="190.0" />

@@ -8,11 +8,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Controller;
 
+import java.awt.*;
+import java.net.URI;
 import java.time.LocalDateTime;
 
 @Controller
@@ -38,7 +44,9 @@ public class PurchaseController extends Util {
     public TableView purchaseTable;
     public MenuItem logout;
     public MenuItem report;
-    private Stage stage;
+    public MenuItem add_items;
+    public MenuItem delete;
+    public MenuItem about;
 
     @FXML
     public void initialize() {
@@ -52,15 +60,17 @@ public class PurchaseController extends Util {
 
 
     private void addPurchase() {
-        btnAddPurchase.setOnAction(actionEvent -> {
-            savePurchase();
-        });
+        btnAddPurchase.setOnAction(actionEvent -> savePurchase());
     }
     private void handleMenuEvents() {
          sales.setOnAction(actionEvent -> navigateToSales());
         report.setOnAction(actionEvent -> navigateToReport());
         exit.setOnAction(actionEvent -> exit());
+        disableMenuItem(add_items);
+        disableMenuItem(delete);
+        about.setOnAction(actionEvent -> openGitRepo());
     }
+
     private void savePurchase() {
         if (areFiledInputs()) {
             var name = txtName.getText().trim();
@@ -70,7 +80,7 @@ public class PurchaseController extends Util {
             var quantity = Integer.parseInt(txtQuantity.getText().trim());
 
             PurchaseService.save(new Purchase(new Product(name, category),
-                    "Whiz",
+                    getUSERNAME(),
                     quantity,
                     purchasePrice,
                     sellingPrice,

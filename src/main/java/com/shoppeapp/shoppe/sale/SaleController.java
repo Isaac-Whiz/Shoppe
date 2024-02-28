@@ -63,6 +63,9 @@ public class SaleController extends Util{
     public Button btnFive;
     public Button btnMulti;
     private final StringBuilder currentInput = new StringBuilder();
+    public MenuItem add_items;
+    public MenuItem delete;
+    public MenuItem about;
     private double currentResult = 0;
     private String lastOperator = "";
     private Logger logger;
@@ -135,6 +138,9 @@ public class SaleController extends Util{
         exit.setOnAction(actionEvent -> exit());
         purchases.setOnAction(actionEvent -> navigateToPurchases());
         report.setOnAction(actionEvent -> navigateToReport());
+        disableMenuItem(delete);
+        disableMenuItem(add_items);
+        about.setOnAction(actionEvent -> openGitRepo());
     }
     private void getSelectedItem() {
         choiceChooseItem.setOnAction(actionEvent -> {
