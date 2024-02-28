@@ -31,7 +31,7 @@ You can grab the entity relationship diagram [here](https://drive.google.com/fil
   **A guide for new postgres users: The console will prompt you to enter the port, leave the as default (5432), database (postgres) also leave this as default, the user (enter the user you issued when installing <br>
   the Postgres client) and lastly the password (enter the one you used when installing the client also)**
 - After logging into the console, use `\li path/to/your/database_script` command to execute the database initialization script. Note that you will see on the consloe that a user and database are created.
-- Grab the installation [.exe](https://drive.google.com/file/d/1tHOLu6wdpNClPcF6lj6u6DvRdkNojTjH/view?usp=drive_link) file.
+- Grab the installation [.exe](https://drive.google.com/file/d/1d_BF-Htzr1eI5gKpcNuhp5xC31U0QVhm/view?usp=sharing) file.
 - Register to enable using the application.
 
 ## Usage
